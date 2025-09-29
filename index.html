@@ -1,0 +1,54 @@
+<!Doctype html>
+<html lang="ru">
+    <head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hello? my name is Igor, it is my first web-site</title>
+<link rel="stylesheet" href="styles.css"/>
+    </head>
+<body>
+    <header class="site-header">
+        <div class="containner">
+            <h1 class="Logo"Hi, thid is  my website</h1>
+            <nav class="nav">
+                <a href="#about">About me</a>
+                <a href="#works">Works</a>
+                <a href="#contacts">Contacts</a>
+            </nav>
+        </div>
+    </header>
+<section class="works containner" id="works">
+    <h3>My first steps</h3>
+    <ul>
+        <li>Creating a page structure</li>
+        <li>Short style through CSS</li>
+        <li>Publication on GitHub Pages</li>
+    </ul>
+</section>
+
+<section class="contact container" id="contact">
+    <h3>To get in touch</h3>
+    <form>
+        <label>
+            Igor
+            <input type="text" name="Name" placeholder="Your name" required/>
+        </label>
+        <label>
+            Communication
+            <textarea name="messege" rows="4" placeholder="write a messege"></textarea>
+        </label>
+        <button type="submit"> To send</button>
+    </form>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <p><span id="year"></span>-My first page</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year'). textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
