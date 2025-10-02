@@ -1,54 +1,74 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-    <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hello? my name is Igor, it is my first web-site</title>
-<link rel="stylesheet" href="styles.css"/>
-    </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Описание страницы (важно для SEO) -->
+  <meta name="description" content="Моя первая страница — тренировка HTML и Git. Лендинг с контактной формой." />
+  <title>Hello — Моя первая страница</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 <body>
-    <header class="site-header">
-        <div class="containner">
-            <h1 class="Logo"Hi, thid is  my website</h1>
-            <nav class="nav">
-                <a href="#about">About me</a>
-                <a href="#works">Works</a>
-                <a href="#contacts">Contacts</a>
-            </nav>
-        </div>
-    </header>
-<section class="works containner" id="works">
-    <h3>My first steps</h3>
-    <ul>
-        <li>Creating a page structure</li>
-        <li>Short style through CSS</li>
-        <li>Publication on GitHub Pages</li>
-    </ul>
-</section>
-
-<section class="contact container" id="contact">
-    <h3>To get in touch</h3>
-    <form>
-        <label>
-            Igor
-            <input type="text" name="Name" placeholder="Your name" required/>
-        </label>
-        <label>
-            Communication
-            <textarea name="messege" rows="4" placeholder="write a messege"></textarea>
-        </label>
-        <button type="submit"> To send</button>
-    </form>
-</section>
-
-<footer class="site-footer">
+  <header class="site-header" role="banner">
     <div class="container">
-        <p><span id="year"></span>-My first page</p>
-    </div>
-</footer>
+      <h1 class="logo">Моя страница-день 2</h1>
 
-<script>
-    document.getElementById('year'). textContent = new Date().getFullYear();
-</script>
+      <!-- Семантический nav с кнопкой для мобильной навигации -->
+      <nav class="nav" role="navigation" aria-label="Главное меню">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+          ☰ <span class="visually-hidden">Меню бургер</span>
+        </button>
+
+        <ul id="main-nav" class="nav-list">
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#works">Работы</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Привет! Я начинающий фронтенд-разработчик</h2>
+      <p>Это простая страница для отработки HTML + Git. Сегодня — второй день: семантика и форма.</p>
+    </section>
+
+    <section class="works container" id="works" aria-labelledby="works-title">
+      <h3 id="works-title">Мои первые шаги</h3>
+      <ul>
+        <li>Создание структуры страницы</li>
+        <li>Краткий стиль через CSS</li>
+        <li>Публикация на GitHub Pages</li>
+      </ul>
+    </section>
+
+    <section class="contact container" id="contact" aria-labelledby="contact-title">
+      <h3 id="contact-title">Связаться</h3>
+      <form aria-describedby="contact-desc" novalidate>
+        <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
+
+        <label for="name">Имя</label>
+        <input id="name" type="text" name="name" placeholder="Ваше имя" required />
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="email" required />
+
+        <label for="message">Сообщение</label>
+        <textarea id="message" name="message" rows="1" placeholder="Написать сообщение"></textarea>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© <span id="year"></span> — Моя первая страница</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

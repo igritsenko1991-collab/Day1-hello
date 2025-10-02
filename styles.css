@@ -1,0 +1,306 @@
+/* ========== CSS-переменные (цвета, шрифты) ========== */
+:root{
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --muted: #666770;
+  --text: #111217;
+  --accent: #1f6feb; /* primary button / links */
+  --accent-600: #165ecb;
+  --border: #e6e6e6;
+  --shadow: 0 4px 14px rgba(24,39,75,0.06);
+  --radius: 8px;
+  --max-width: 900px;
+  --gap: 16px;
+  --base-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ========== Минимальный сброс ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--base-font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Удобный контейнер */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Плавный скролл для якорей */
+html { scroll-behavior: smooth; }
+
+/* ========== Типографика ========== */
+h1, h2, h3, h4, h5 {
+  color: var(--text);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1 { font-size: 20px; }      /* логотип / маленький заголовок */
+h2 { font-size: 28px; }      /* hero */
+h3 { font-size: 18px; }      /* секции */
+p { margin: 0 0 12px 0; font-size: 15px; color: #222; }
+
+/* Списки */
+ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
+
+/* ========== Header / Навигация ========== */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 14px 20px;
+}
+
+/* Логотип (простейший вид) */
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.2px;
+}
+
+/* Навигация */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Список ссылок по умолчанию (десктоп) */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  padding: 8px 6px;
+  border-radius: 6px;
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+  background: rgba(31,111,235,0.06);
+  color: var(--accent-600);
+  outline: none;
+}
+
+/* Кнопка для мобильной навигации (гамбургер) */
+.nav-toggle {
+  display: none; /* показываем только на мобилке */
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ========== Hero / Секции ========== */
+.hero {
+  padding: 40px 0;
+}
+
+.works,
+.contact {
+  margin-top: 24px;
+  background: var(--surface);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* ========== Форма ========== */
+form {
+  display: block;
+  margin-top: 8px;
+}
+
+form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  transition: box-shadow .15s ease, border-color .15s ease;
+  color: var(--text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa0a6;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(31,111,235,0.08);
+}
+
+/* Кнопки */
+button {
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+
+/* Secondary button (если понадобится) */
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-600);
+  border: 1px solid rgba(31,111,235,0.12);
+}
+
+/* ========== Footer ========== */
+.site-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 20px 0 40px 0;
+}
+
+/* ========== Доступность и фокус ========== */
+/* Класс для скрытия визуально, но сохранения для скринридеров */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+/* Яркая видимая фокусировка (для клавиатуры) */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 3px solid rgba(31,111,235,0.22);
+  outline-offset: 2px;
+}
+
+/* ========== Адаптивность ========== */
+@media (max-width: 700px) {
+  .container { padding: 14px; }
+
+  /* Показываем кнопку гамбургера */
+  .nav-toggle {
+    display: inline-block;
+    background: none;
+    border: none;
+  }
+
+  /* Скрываем обычный список навигации */
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+    background: transparent;
+    padding-left: 0;
+  }
+
+  /* Когда список открыт — класс .show добавит display:flex */
+  .nav-list.show {
+    display: flex;
+  }
+
+  /* Немного уплотним шапку */
+  .site-header .container {
+    padding: 10px 14px;
+  }
+
+  h2 { font-size: 22px; }
+  .hero { padding: 24px 0; }
+}
+
+/* ========== Маленькие косметические улучшения ========== */
+/* Тени и карточный вид для изображений/превью */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 6px 20px rgba(24,39,75,0.04);
+}
+
+/* Удобные отступы секций внутри контейнера */
+.container > :not(:first-child) {
+  margin-top: var(--gap);
+}
+
+/* Миниатюрные стили для списка работ */
+.works ul { margin: 10px 0 0 1rem; }
+
+/* ========== Принты (опционально) ========== */
+@media print {
+  .site-header, .site-footer, .nav-toggle { display: none !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* ========== Утилиты ========== */
+/* Горизонтальный центр */
+.center { text-align: center; }
+
+/* Маленький помощник для отступов */
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+
+/* ========== Конец файла ========== */
