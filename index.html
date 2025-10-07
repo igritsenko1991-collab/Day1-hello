@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Описание страницы -->
   <meta name="description" content="Моя первая страница — тренировка HTML и Git. Лендинг с контактной формой." />
   <title>Hello — Моя первая страница</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?V=1" />
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -15,7 +15,7 @@
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
       <nav class="nav" role="navigation" aria-label="Главное меню">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
           ☰ <span class="visually-hidden">Меню бургер</span>
         </button>
 
@@ -28,7 +28,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero container" id="about" aria-labelledby="about-title">
       <h2 id="about-title">Привет! Я начинающий фронтенд-разработчик</h2>
       <p>Это простая страница для отработки HTML + Git. Сегодня — третий день: адаптивная верстка.</p>
@@ -52,10 +52,10 @@
         <input id="name" type="text" name="name" placeholder="Ваше имя" required />
 
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="email" required />
+        <input id="email" type="email" name="email" placeholder="you@example.com" required />
 
         <label for="message">Сообщение</label>
-        <textarea id="message" name="message" rows="1" placeholder="Написать сообщение"></textarea>
+        <textarea id="message" name="message" rows="4" placeholder="Написать сообщение"></textarea>
 
         <button type="submit">Отправить</button>
       </form>

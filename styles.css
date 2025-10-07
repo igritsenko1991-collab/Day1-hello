@@ -14,6 +14,17 @@
   --base-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
 /* ========== Минимальный сброс ========== */
 *,
 *::before,
@@ -31,9 +42,6 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.45;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* Удобный контейнер */
@@ -43,16 +51,15 @@ body {
   padding: 20px;
 }
 
-/* Плавный скролл для якорей */
-html { scroll-behavior: smooth; }
-
 /* ========== Типографика ========== */
 h1, h2, h3, h4, h5 {
-  color: var(--text);
   margin: 0 0 8px 0;
   font-weight: 600;
   line-height: 1.15;
 }
+
+
+
 
 h1 { font-size: 20px; }      /* логотип / маленький заголовок */
 h2 { font-size: 28px; }      /* hero */
@@ -84,7 +91,7 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
   font-size: 18px;
   font-weight: 700;
   color: var(--text);
-  letter-spacing: -0.2px;
+
 }
 
 /* Навигация */
@@ -92,18 +99,19 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative; /* для абсалютного позиционирования мобильного меню */ 
 }
 
 /* Список ссылок по умолчанию (десктоп) */
 .nav-list {
   list-style: none;
-  display: flex;
   gap: 16px;
   align-items: center;
   margin: 0;
   padding: 0;
 }
 
+/* Ссылки */
 .nav-list a {
   text-decoration: none;
   color: #333;
@@ -115,19 +123,12 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
 .nav-list a:hover,
 .nav-list a:focus {
   background: rgba(31,111,235,0.06);
-  color: var(--accent-600);
-  outline: none;
 }
 
 /* Кнопка для мобильной навигации (гамбургер) */
 .nav-toggle {
-  display: none; /* показываем только на мобилке */
-  background: none;
-  border: none;
-  font-size: 20px;
-  padding: 8px;
   border-radius: 8px;
-  cursor: pointer;
+  transition: background .12s ease, transform .08s ease;
 }
 
 /* ========== Hero / Секции ========== */
@@ -146,10 +147,6 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
 }
 
 /* ========== Форма ========== */
-form {
-  display: block;
-  margin-top: 8px;
-}
 
 form label {
   display: block;
@@ -158,31 +155,14 @@ form label {
   color: #333;
 }
 
-input[type="text"],
-input[type="email"],
-textarea,
-select {
+input,
+textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: white;
-  transition: box-shadow .15s ease, border-color .15s ease;
-  color: var(--text);
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #9aa0a6;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 6px 20px rgba(31,111,235,0.08);
 }
 
 /* Кнопки */
@@ -195,155 +175,122 @@ button {
   cursor: pointer;
   background: var(--accent);
   color: #fff;
-  transition: transform .08s ease, box-shadow .08s ease;
-}
-
-button:hover { transform: translateY(-1px); }
-button:active { transform: translateY(0); }
-
-/* Secondary button (если понадобится) */
-.btn-secondary {
-  background: transparent;
-  color: var(--accent-600);
-  border: 1px solid rgba(31,111,235,0.12);
 }
 
 /* ========== Footer ========== */
 .site-footer {
-  margin-top: 20px;
   text-align: center;
   color: var(--muted);
   font-size: 14px;
   padding: 20px 0 40px 0;
 }
 
-/* ========== Доступность и фокус ========== */
-/* Класс для скрытия визуально, но сохранения для скринридеров */
-.visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
-  border: 0;
-  padding: 0;
-  margin: -1px;
-}
-
-/* Яркая видимая фокусировка (для клавиатуры) */
-a:focus, button:focus, input:focus, textarea:focus {
-  outline: 3px solid rgba(31,111,235,0.22);
-  outline-offset: 2px;
-}
-
-/* ========== Адаптивность ========== */
 @media (max-width: 700px) {
-  .container { padding: 14px; }
-
-  /* Показываем кнопку гамбургера */
+  /* Показ кнопки (бургер) */
   .nav-toggle {
-    display: inline-block;
-    background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px;
+    font-size: 20px;
+    background: transparent;
     border: none;
+    cursor: pointer;
+    z-index: 60;
+    position: relative;
   }
-
-  /* Скрываем обычный список навигации */
+}
+  /* Прячем обычный список на мобилке */
   .nav-list {
     display: none;
-    flex-direction: column;
+    position: absolute;
+    right: 12px;
+    top: 56px;
+    background: var(--surface);
+    padding: 10px;
     gap: 10px;
-    margin-top: 8px;
-    background: transparent;
-    padding-left: 0;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    z-index: 50;
+    min-width: 160px;
   }
 
-  /* Когда список открыт — класс .show добавит display:flex */
-  .nav-list.show {
+  /* Когда список открыт — класс .active добавит display:flex */
+  .nav-list.active {
     display: flex;
   }
 
-  /* Немного уплотним шапку */
-  .site-header .container {
-    padding: 10px 14px;
-  }
 
+  /* дополнительные мобильные правила (если есть) */
+  .site-header .container { padding: 10px 14px; }
   h2 { font-size: 22px; }
   .hero { padding: 24px 0; }
-}
 
-/* ========== Маленькие косметические улучшения ========== */
-/* Тени и карточный вид для изображений/превью */
-.card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 12px;
-  border: 1px solid rgba(0,0,0,0.03);
-  box-shadow: 0 6px 20px rgba(24,39,75,0.04);
-}
 
-/* Удобные отступы секций внутри контейнера */
-.container > :not(:first-child) {
-  margin-top: var(--gap);
-}
-
-/* Миниатюрные стили для списка работ */
-.works ul { margin: 10px 0 0 1rem; }
-
-/* ========== Принты (опционально) ========== */
-@media print {
-  .site-header, .site-footer, .nav-toggle { display: none !important; }
-  body { background: #fff; color: #000; }
-}
-
-/* ========== Утилиты ========== */
-/* Горизонтальный центр */
-.center { text-align: center; }
-
-/* Маленький помощник для отступов */
-.mt-8 { margin-top: 8px; }
-.mt-16 { margin-top: 16px; }
-
-/* Основные стили -mobile first */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul {
-  display: flex;
-  flex-direction: column; /* на телефоне меню столбиком  */
-  gap: 10px;
-}
-
-main {
-  padding: 10px;
-}
-
-/* Планшеты */
-@media ( min-wigth:768px) {
-  header nav ul {
-    flex-direction: row; /* На планшетах меню горизонтальное*/
-    justify-content: center;
-    gap: 20px;
-  }
-
-  maim {
-    padding: 10px;
+/* Планшеты и выше - горизонтальное меню */
+@media (min-width:701px) {
+  .nav-toggle { display: none; }
+  .nav-list {
+    display: flex;
+    position: static;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
   }
 }
 
-/* Десктопы */
-@media (min-wigth: 1024px) {
+/* Десктоп (широкие экраны) — улучшение лэйаута */
+@media (min-width: 1024px) {
   body {
     max-width: 1200px;
     margin: 0 auto;
   }
 
-main {
-  display: grid;
-  grid-template-columns: 2ft 1fr;
-  gap: 30px;
+ main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    padding: 30px;
+  }
 }
+
+/* Бургер меню  */
+@media (max-width: 700px) {
+  .nav-toggle {
+  color: var(--accent);                 /* синий цвет иконки/символа */
+  background: rgba(0,0,0,0.04);      /* легкий фон для контраста */
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .12s ease, transform .06s ease;
+  z-index: 9999;
+  }
+
+  .nav-toggle:hover,
+.nav-toggle:focus {
+  background: rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+  outline: none;
 }
+
+  .nav-list {
+    display: none;
+  }
+
+  .nav-list.active {
+    display: flex;
+  }
+}
+
 /* ========== Конец файла ========== */
