@@ -11,7 +11,7 @@
 <body>
   <header class="site-header" role="banner">
     <div class="container">
-      <h1 class="logo">Мой первый сайт</h1>
+      <h1 class="logo">Fronted Developer</h1>
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
       <nav class="nav" role="navigation" aria-label="Главное меню">
@@ -27,13 +27,34 @@
       </nav>
     </div>
   </header>
-
-  <main id="main">
-    <section class="hero container" id="about" aria-labelledby="about-title">
-      <h2 id="about-title">Привет! Я начинающий фронтенд-разработчик</h2>
-      <p>Это простая страница для отработки HTML + Git. Сегодня — третий день: адаптивная верстка.</p>
+  <!-- About/ Обо мне-->
+<main id="main">
+   <section class="hero container" id="hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-text">
+       <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
+      </div>
+      <div class="hero-badge">5</div>
+     </div>
+   </section>
+<section class="about container" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Обо мне</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Меня зовут <strong>Игорь</strong>. Я учусь на <strong>фронтенд-разработчика</strong>, изучаю HTML, CSS и JavaScript и собираю проекты для своего портфолио на GitHub. Люблю продумывать интерфейсы и делать их доступными.</p>
+          <ul class="skills">
+            <li>HTML5 / Семантика</li>
+            <li>CSS3 / Flexbox / Grid</li>
+            <li>JavaScript / DOM</li>
+          </ul>
+        </div>
+        <figure class="about-photo">
+          <img src="images/me.jpg" alt="Фото мое — начинающий фронтенд-разработчик">
+          <figcaption class="visually-hidden">Игорь — frontend developer</figcaption>
+        </figure>
+      </div>
     </section>
-
+    
     <section class="works container" id="works" aria-labelledby="works-title">
       <h3 id="works-title">Мои первые шаги</h3>
       <ul>
@@ -44,11 +65,11 @@
     </section>
 
     <section class="contact container" id="contact" aria-labelledby="contact-title">
-      <h3 id="contact-title">Связаться</h3>
+      <h3 id="contact-title">Связаться со мной</h3>
       <form aria-describedby="contact-desc" novalidate>
         <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
 
-        <label for="name">Имя</label>
+        <label for="name">Ваше имя</label>
         <input id="name" type="text" name="name" placeholder="Ваше имя" required />
 
         <label for="email">Email</label>
@@ -64,7 +85,8 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> — Моя первая страница</p>
+      <p>© <span id="year"></span> — Игорь (Fronted developer)</p>
+      <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">Репозиторий на GitHub</a></p>
     </div>
   </footer>
 

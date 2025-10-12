@@ -42,6 +42,9 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.45;
+  background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 70%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Удобный контейнер */
@@ -61,7 +64,7 @@ h1, h2, h3, h4, h5 {
 
 
 
-h1 { font-size: 20px; }      /* логотип / маленький заголовок */
+h1 { font-size: 30px; }      /* логотип / маленький заголовок */
 h2 { font-size: 28px; }      /* hero */
 h3 { font-size: 18px; }      /* секции */
 p { margin: 0 0 12px 0; font-size: 15px; color: #222; }
@@ -91,7 +94,11 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
   font-size: 18px;
   font-weight: 700;
   color: var(--text);
+transition: color .2s ease;
+}
 
+.logo:hover {
+ color: var(--accent);
 }
 
 /* Навигация */
@@ -133,9 +140,34 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
 
 /* ========== Hero / Секции ========== */
 .hero {
-  padding: 40px 0;
+  padding: 48px 0;
+}
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
+.hero-text h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.hero-text p {
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.hero-badge {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 3px 6px rgba(31,111,235,0.3);
+}
 .works,
 .contact {
   margin-top: 24px;
@@ -175,6 +207,12 @@ button {
   cursor: pointer;
   background: var(--accent);
   color: #fff;
+  transition: background .15s ease, transform .1s ease;
+}
+
+button:hover {
+  background: var(--accent-600);
+  transform: translateY(-1px);
 }
 
 /* ========== Footer ========== */
@@ -249,6 +287,7 @@ button {
   body {
     max-width: 1200px;
     margin: 0 auto;
+
   }
 
  main {
@@ -262,7 +301,7 @@ button {
 /* Бургер меню  */
 @media (max-width: 700px) {
   .nav-toggle {
-  color: var(--accent);                 /* синий цвет иконки/символа */
+  color: var(--text);                 /* черный цвет иконки/символа */
   background: rgba(0,0,0,0.04);      /* легкий фон для контраста */
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 8px;
@@ -276,7 +315,20 @@ button {
   transition: background .12s ease, transform .06s ease;
   z-index: 9999;
   }
+.about-photo img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 10px 24px rgba(24,39,75,0.15);
+    border: 4px solid rgba(255,255,255,0.8);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
 
+  .about-photo img:hover {
+    transform: translateY(-4px);
+   box-shadow: 0 16px 32px rgba(24,39,75,0.2);
+  }
   .nav-toggle:hover,
 .nav-toggle:focus {
   background: rgba(0,0,0,0.08);
@@ -292,5 +344,6 @@ button {
     display: flex;
   }
 }
+
 
 /* ========== Конец файла ========== */
