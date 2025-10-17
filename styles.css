@@ -445,4 +445,39 @@ button:hover {
     height: 160px;
   }
 }
+
+/* Анимация появления карточек */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Анимация карточек */
+.proj-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* Задержка для последовательного появления */
+.proj-card:nth-child(1) { animation-delay: 0.1s; }
+.proj-card:nth-child(2) { animation-delay: 0.2s; }
+.proj-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Hover эффект */
+.proj-card {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.proj-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(31,111,235,0.15);
+}
+
+/* Сетка карточек — адаптивная */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
 /* ========== Конец файла ========== */
