@@ -116,20 +116,20 @@
 
     <section class="contact container" id="contact" aria-labelledby="contact-title">
       <h3 id="contact-title">Связаться со мной</h3>
-      <form aria-describedby="contact-desc" novalidate>
-        <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
-
-        <label for="name">Ваше имя</label>
-        <input id="name" type="text" name="name" placeholder="Ваше имя" required />
-
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="you@example.com" required />
-
-        <label for="message">Сообщение</label>
-        <textarea id="message" name="message" rows="4" placeholder="Написать сообщение"></textarea>
-
-        <button type="submit">Отправить</button>
-      </form>
+      <form id="contact-form" aria-describedby="contact-desc" novalidate>
+  <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
+    <label for="name">Ваше имя</label>
+  <input id="name" name="name" type="text" placeholder="Ваше имя" required aria-required="true" aria-describedby="name-err" />
+    <div id="name-err" class="field-error visually-hidden" aria-live="polite"></div>
+    <label for="email">Email</label>
+  <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" aria-describedby="email-err" />
+    <div id="email-err" class="field-error visually-hidden" aria-live="polite"></div>
+    <label for="message">Сообщение</label>
+  <textarea id="message" name="message" rows="4" placeholder="Написать сообщение" minlength="10" required aria-required="true" aria-describedby="message-err"></textarea>
+    <div id="message-err" class="field-error visually-hidden" aria-live="polite"></div>
+    <button id="contact-submit" type="submit">Отправить</button>
+  <div id="form-status" role="status" aria-live="polite" class="visually-hidden"></div>
+</form>
     </section>
   </main>
 

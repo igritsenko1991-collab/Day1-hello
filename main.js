@@ -96,3 +96,128 @@ if (backToTopButton) {
   console.error('main.js: .back-to-top button not found in DOM');
 }
 });
+// === Contact form validation & fake submit ===
+(function(){
+  const form = document.getElementById('contact-form');
+  if (!form) return console.log('main.js: contact form not found');
+
+  const status = document.getElementById('form-status');
+  const submitBtn = document.getElementById('contact-submit');
+  let isSubmitting = false;
+
+  // Вспомогательные функции
+  const showError = (input, msg) => {
+    const id = input.id + '-err';
+    const el = document.getElementById(id);
+    input.classList.add('input-invalid');
+    if (el) {
+      el.textContent = msg;
+      el.classList.remove('visually-hidden');
+    }
+  };
+
+  const clearError = (input) => {
+    const id = input.id + '-err';
+    const el = document.getElementById(id);
+    input.classList.remove('input-invalid');
+    if (el) {
+      el.textContent = '';
+      el.classList.add('visually-hidden');
+    }
+  };
+
+  const validateField = (input) => {
+    clearError(input);
+    // встроенная проверка
+    if (!input.checkValidity()) {
+      if (input.validity.valueMissing) return showError(input, 'Это поле обязательно');
+      if (input.validity.typeMismatch && input.type === 'email') return showError(input, 'Введите корректный email');
+      if (input.validity.tooShort) return showError(input, `Минимум ${input.minLength} символов`);
+      if (input.validity.patternMismatch) return showError(input, 'Неправильный формат');
+      return true;
+    }
+    return true;
+  };
+
+  // Валидация в реальном времени (debounce)
+  const debounce = (fn, wait=250) => {
+    let t;
+    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+  };
+
+  ['name','email','message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', debounce(() => validateField(el), 300));
+    el.addEventListener('blur', () => validateField(el));
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    // Очистка статуса
+    status.className = 'visually-hidden';
+    status.textContent = '';
+
+    // Проверим все поля и сконцентрируемся на первой ошибке
+    const fields = ['name','email','message'].map(id => document.getElementById(id)).filter(Boolean);
+    let firstInvalid = null;
+    fields.forEach(f => {
+      if (!f.checkValidity()) {
+        validateField(f);
+        if (!firstInvalid) firstInvalid = f;
+      } else {
+        clearError(f);
+      }
+    });
+
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    // Подготовка к отправке
+    isSubmitting = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка…';
+
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      ts: new Date().toISOString()
+    };
+
+    try {
+      // Тестовый endpoint (jsonplaceholder) — можно заменить на реальный API
+      const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('Network response was not ok');
+
+      // Успех
+      status.className = 'ok';
+      status.textContent = 'Спасибо! Сообщение отправлено (демо).';
+      status.classList.remove('visually-hidden');
+
+      // Сброс формы через небольшую задержку
+      setTimeout(() => {
+        form.reset();
+        ['name','email','message'].forEach(id => clearError(document.getElementById(id)));
+      }, 600);
+    } catch (err) {
+      status.className = 'err';
+      status.textContent = 'Ошибка отправки. Попробуйте позже.';
+      status.classList.remove('visually-hidden');
+      console.error('send error', err);
+    } finally {
+      isSubmitting = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Отправить';
+    }
+  });
+})();

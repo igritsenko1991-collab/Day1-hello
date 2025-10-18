@@ -490,4 +490,24 @@ button:hover {
   transform: translateY(-2px);
 }
 
+.field-error {
+  color: #b00020;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.input-invalid {
+  border-color: #b00020;
+  box-shadow: 0 2px 8px rgba(176,0,32,0.08);
+}
+
+#form-status {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+#form-status.ok { background: rgba(31,111,235,0.08); color: var(--accent-600); }
+#form-status.err { background: rgba(176,0,32,0.06); color: #b00020; }
+
 /* ========== Конец файла ========== */
