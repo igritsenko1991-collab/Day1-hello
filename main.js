@@ -60,4 +60,39 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMenu();
     }
   });
+
+
+// Кнопка "Наверх"
+const backToTopButton = document.querySelector('.back-to-top');
+
+if (backToTopButton) {
+  // Показать/скрыть кнопку при прокрутке
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add('show');
+      backToTopButton.style.display = 'block';
+    } else {
+      backToTopButton.classList.remove('show');
+      // Скрываем после завершения анимации
+      setTimeout(() => {
+        if (!backToTopButton.classList.contains('show')) {
+          backToTopButton.style.display = 'none';
+        }
+      }, 300);
+    }
+  });
+
+  // Плавная прокрутка при клике
+  backToTopButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  console.log('main.js: back-to-top button initialized');
+} else {
+  console.error('main.js: .back-to-top button not found in DOM');
+}
 });
