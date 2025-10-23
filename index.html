@@ -11,7 +11,7 @@
 <body>
   <header class="site-header" role="banner">
     <div class="container">
-      <h1 class="logo">Fronted Developer</h1>
+      <h1 class="logo">FRONTEND-DEVELOPER</h1>
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
       <nav class="nav" role="navigation" aria-label="Главное меню">
@@ -29,15 +29,15 @@
   </header>
   <!-- About/ Обо мне-->
 <main id="main">
-   <section class="hero container" id="hero" aria-labelledby="hero-title">
+   <section class="hero container fade-in" id="hero" aria-labelledby="hero-title">
     <div class="hero-inner">
       <div class="hero-text">
        <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
       </div>
-      <div class="hero-badge">8</div>
+      <div class="hero-badge">10</div>
      </div>
    </section>
-<section class="about container" id="about" aria-labelledby="about-title">
+<section class="about container fade-in" id="about" aria-labelledby="about-title">
       <h2 id="about-title">Обо мне</h2>
       <div class="about-content">
         <div class="about-text">
@@ -54,15 +54,17 @@
         </figure>
       </div>
     </section>
+
+  <!-- Works с анимацией -->
     
-    <section class="works container" id="works" aria-labelledby="works-title">
+    <section class="works container fade-in" id="works" aria-labelledby="works-title">
     <h3 id="works-title">Мои проекты</h3>
 
   <p class="works-intro">Ниже — отобранные мини-проекты и упражнения. Каждый проект содержит ссылку на demo и репозиторий.</p>
 
   <div class="projects-grid" role="list">
     <!-- Card 1 -->
-    <article class="proj-card" role="listitem">
+    <article class="proj-card fade-in delay-1" role="listitem">
       <a class="proj-media" href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">
         <img src="images/works/project1.jpeg" alt="Превью проекта Лендинг — адаптивный" />
       </a>
@@ -81,9 +83,9 @@
     </article>
 
     <!-- Card 2 -->
-    <article class="proj-card" role="listitem">
+    <article class="proj-card fade-in delay-2" role="listitem">
       <a class="proj-media" href="#" target="_blank" rel="noopener">
-        <img src="images/works/project2.jpeg"" alt="Превью проекта ToDo App" />
+        <img src="images/works/project2.jpeg" alt="Превью проекта ToDo App" />
       </a>
       <div class="proj-body">
         <h4 class="proj-title">ToDo App</h4>
@@ -97,9 +99,9 @@
     </article>
 
     <!-- Card 3 -->
-    <article class="proj-card" role="listitem">
+    <article class="proj-card fade-in delay-3" role="listitem">
       <a class="proj-media" href="#" target="_blank" rel="noopener">
-        <img src="images/works/project3.jpeg"" alt="Превью проекта Мини-блог" />
+        <img src="images/works/project3.jpeg" alt="Превью проекта Мини-блог" />
       </a>
       <div class="proj-body">
         <h4 class="proj-title">Мини-блог</h4>
@@ -114,7 +116,8 @@
   </div>
     </section>
 
-    <section class="contact container" id="contact" aria-labelledby="contact-title">
+    <!-- Contact с анимацией -->
+    <section class="contact container fade-in" id="contact" aria-labelledby="contact-title">
       <h3 id="contact-title">Связаться со мной</h3>
       <form id="contact-form" aria-describedby="contact-desc" novalidate>
   <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
@@ -135,11 +138,9 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> — Игорь (Fronted developer)</p>
       <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">Репозиторий на GitHub</a></p>
     </div>
-       <button class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑
-   </button>
+       <button class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>
   </footer>
 
   <script src="main.js"></script>

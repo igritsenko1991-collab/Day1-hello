@@ -1,105 +1,113 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('.nav-list');
-    const nav = document.querySelector('.nav');
+  // Бургер меню и навигация
+  const navToggle = document.querySelector('.nav-toggle');
+  const navList = document.querySelector('.nav-list');
+  const nav = document.querySelector('.nav');
 
-    if (!navToggle) {
-        console.error('main.js: .nav-toggle not found in DOM');
-        return;
-    }
-    if (!navList) {
-        console.error('main.js: .nav-list not found in DOM');
-        return;
-    }
-
+  if (navToggle && navList) {
     // Инициализация ARIA-значений
-  navToggle.setAttribute('aria-expanded', 'false');
-  navList.setAttribute('aria-hidden', 'true');
-
-  console.log('main.js: burger menu initialized');
-
-  const openMenu = () => {
-    navToggle.setAttribute('aria-expanded', 'true');
-    navList.classList.add('active');
-    navList.setAttribute('aria-hidden', 'false');
-  };
-
-  const closeMenu = () => {
     navToggle.setAttribute('aria-expanded', 'false');
-    navList.classList.remove('active');
     navList.setAttribute('aria-hidden', 'true');
-  };
 
-  navToggle.addEventListener('click', (e) => {
-    // переключаем меню
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    if (expanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-    console.log('main.js: toggled menu — expanded=', !expanded);
-  });
+    console.log('main.js: burger menu initialized');
 
-  // Закрыть по Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' || e.key === 'Esc') {
-      if (navList.classList.contains('active')) {
+    const openMenu = () => {
+      navToggle.setAttribute('aria-expanded', 'true');
+      navList.classList.add('active');
+      navList.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeMenu = () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navList.classList.remove('active');
+      navList.setAttribute('aria-hidden', 'true');
+    };
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      if (expanded) {
         closeMenu();
-        navToggle.focus(); // вернуть фокус на кнопку
+      } else {
+        openMenu();
       }
-    }
-  });
-
-  // Закрыть при клике вне меню (только если меню открыто)
-  document.addEventListener('click', (e) => {
-    if (!navList.classList.contains('active')) return;
-    // если клик не внутри nav (ни кнопку, ни список) — закрыть
-    if (!nav.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-
-// Кнопка "Наверх"
-const backToTopButton = document.querySelector('.back-to-top');
-
-if (backToTopButton) {
-  // Показать/скрыть кнопку при прокрутке
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      backToTopButton.classList.add('show');
-      backToTopButton.style.display = 'block';
-    } else {
-      backToTopButton.classList.remove('show');
-      // Скрываем после завершения анимации
-      setTimeout(() => {
-        if (!backToTopButton.classList.contains('show')) {
-          backToTopButton.style.display = 'none';
-        }
-      }, 300);
-    }
-  });
-
-  // Плавная прокрутка при клике
-  backToTopButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+      console.log('main.js: toggled menu — expanded=', !expanded);
     });
-  });
 
-  console.log('main.js: back-to-top button initialized');
-} else {
-  console.error('main.js: .back-to-top button not found in DOM');
-}
+    // Закрыть по Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        if (navList.classList.contains('active')) {
+          closeMenu();
+          navToggle.focus();
+        }
+      }
+    });
+
+    // Закрыть при клике вне меню
+    document.addEventListener('click', (e) => {
+      if (!navList.classList.contains('active')) return;
+      if (!nav.contains(e.target)) closeMenu();
+    });
+  } else {
+    console.error('main.js: Navigation elements not found');
+  }
+
+  // Кнопка "Наверх"
+  const backToTopButton = document.querySelector('.back-to-top');
+  if (backToTopButton) {
+    // Показать/скрыть кнопку при прокрутке
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('show');
+        backToTopButton.style.display = 'block';
+      } else {
+        backToTopButton.classList.remove('show');
+        // Скрываем после завершения анимации
+        setTimeout(() => {
+          if (!backToTopButton.classList.contains('show')) {
+            backToTopButton.style.display = 'none';
+          }
+        }, 300);
+      }
+    });
+
+    // Плавная прокрутка при клике
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    console.log('main.js: back-to-top button initialized');
+  } else {
+    console.error('main.js: .back-to-top button not found in DOM');
+  }
+
+  // Intersection Observer для анимаций
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const fadeElements = document.querySelectorAll('.fade-in');
+  if (fadeElements.length > 0) {
+    fadeElements.forEach(el => observer.observe(el));
+    console.log(`main.js: observing ${fadeElements.length} fade-in elements`);
+  }
 });
-// === Contact form validation & fake submit ===
-(function(){
+
+// Contact form validation & fake submit
+(function() {
   const form = document.getElementById('contact-form');
-  if (!form) return console.log('main.js: contact form not found');
+  if (!form) {
+    console.log('main.js: contact form not found');
+    return;
+  }
 
   const status = document.getElementById('form-status');
   const submitBtn = document.getElementById('contact-submit');
@@ -128,24 +136,32 @@ if (backToTopButton) {
 
   const validateField = (input) => {
     clearError(input);
-    // встроенная проверка
+    // Встроенная проверка
     if (!input.checkValidity()) {
-      if (input.validity.valueMissing) return showError(input, 'Это поле обязательно');
-      if (input.validity.typeMismatch && input.type === 'email') return showError(input, 'Введите корректный email');
-      if (input.validity.tooShort) return showError(input, `Минимум ${input.minLength} символов`);
-      if (input.validity.patternMismatch) return showError(input, 'Неправильный формат');
-      return true;
+      if (input.validity.valueMissing) {
+        showError(input, 'Это поле обязательно');
+      } else if (input.validity.typeMismatch && input.type === 'email') {
+        showError(input, 'Введите корректный email');
+      } else if (input.validity.tooShort) {
+        showError(input, `Минимум ${input.minLength} символов`);
+      } else if (input.validity.patternMismatch) {
+        showError(input, 'Неправильный формат');
+      }
+      return false;
     }
     return true;
   };
 
   // Валидация в реальном времени (debounce)
-  const debounce = (fn, wait=250) => {
-    let t;
-    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+  const debounce = (fn, wait = 250) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn(...args), wait);
+    };
   };
 
-  ['name','email','message'].forEach(id => {
+  ['name', 'email', 'message'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('input', debounce(() => validateField(el), 300));
@@ -160,19 +176,21 @@ if (backToTopButton) {
     status.className = 'visually-hidden';
     status.textContent = '';
 
-    // Проверим все поля и сконцентрируемся на первой ошибке
-    const fields = ['name','email','message'].map(id => document.getElementById(id)).filter(Boolean);
+    // Проверка
+    const fields = ['name', 'email', 'message'].map(id => document.getElementById(id)).filter(Boolean);
     let firstInvalid = null;
+    let allValid = true;
+
     fields.forEach(f => {
-      if (!f.checkValidity()) {
-        validateField(f);
+      if (!validateField(f)) {
+        allValid = false;
         if (!firstInvalid) firstInvalid = f;
       } else {
         clearError(f);
       }
     });
 
-    if (firstInvalid) {
+    if (!allValid && firstInvalid) {
       firstInvalid.focus();
       return;
     }
@@ -193,7 +211,7 @@ if (backToTopButton) {
       // Тестовый endpoint (jsonplaceholder) — можно заменить на реальный API
       const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
@@ -207,7 +225,10 @@ if (backToTopButton) {
       // Сброс формы через небольшую задержку
       setTimeout(() => {
         form.reset();
-        ['name','email','message'].forEach(id => clearError(document.getElementById(id)));
+        ['name', 'email', 'message'].forEach(id => {
+          const field = document.getElementById(id);
+          if (field) clearError(field);
+        });
       }, 600);
     } catch (err) {
       status.className = 'err';
