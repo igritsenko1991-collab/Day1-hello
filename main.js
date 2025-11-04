@@ -44,12 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Закрыть при клике вне меню
-    document.addEventListener('click', (e) => {
+       document.addEventListener('click', (e) => {
       if (!navList.classList.contains('active')) return;
-      if (!nav.contains(e.target)) closeMenu();
+      if (!nav || !nav.contains(e.target)) closeMenu();
     });
+
   } else {
-    console.error('main.js: Navigation elements not found');
+    console.error('main.js: Navigation elements not found — skipping menu init');
   }
 
   // Кнопка "Наверх"
@@ -81,9 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log('main.js: back-to-top button initialized');
-  } else {
-    console.error('main.js: .back-to-top button not found in DOM');
+    } else {
+    console.warn('main.js: Navigation elements not found — skipping menu init');
   }
+
 
   // Intersection Observer для анимаций
   const observer = new IntersectionObserver((entries) => {
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.08});
 
   const fadeElements = document.querySelectorAll('.fade-in');
   if (fadeElements.length > 0) {
@@ -173,9 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isSubmitting) return;
 
     // Очистка статуса
+    if (status) {
     status.className = 'visually-hidden';
     status.textContent = '';
-
+    }
+  
     // Проверка
     const fields = ['name', 'email', 'message'].map(id => document.getElementById(id)).filter(Boolean);
     let firstInvalid = null;
@@ -197,9 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Подготовка к отправке
     isSubmitting = true;
+    if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка…';
-
+    }
     const payload = {
       name: form.name.value,
       email: form.email.value,
@@ -218,10 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!res.ok) throw new Error('Network response was not ok');
 
       // Успех
+      if (status) {
       status.className = 'ok';
       status.textContent = 'Спасибо! Сообщение отправлено (демо).';
       status.classList.remove('visually-hidden');
-
+      }
       // Сброс формы через небольшую задержку
       setTimeout(() => {
         form.reset();
@@ -231,14 +237,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }, 600);
     } catch (err) {
+      if (status) {
       status.className = 'err';
       status.textContent = 'Ошибка отправки. Попробуйте позже.';
       status.classList.remove('visually-hidden');
       console.error('send error', err);
+      }
     } finally {
       isSubmitting = false;
+      if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Отправить';
     }
+  }
   });
 })();

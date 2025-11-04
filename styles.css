@@ -61,7 +61,24 @@ h1, h2, h3, h4, h5 {
   line-height: 1.15;
 }
 
+.nav-list {
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 56px;
+  background: var(--surface);
+  padding: 10px;
+  gap: 10px;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  z-index: 50;
+  min-width: 160px;
+}
 
+.nav-list.active {
+  display: flex;
+}
 
 
 h1 { font-size: 30px; }      /* логотип / маленький заголовок */
@@ -223,27 +240,6 @@ button:hover {
   padding: 20px 0 40px 0;
 }
 
-  /* Прячем обычный список на мобилке */
-  .nav-list {
-    display: none;
-    position: absolute;
-    right: 12px;
-    top: 56px;
-    background: var(--surface);
-    padding: 10px;
-    gap: 10px;
-    flex-direction: column;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    z-index: 50;
-    min-width: 160px;
-  }
-
-  /* Когда список открыт — класс .active добавит display:flex */
-  .nav-list.active {
-    display: flex;
-  }
-
 
   /* дополнительные мобильные правила (если есть) */
   .site-header .container { padding: 10px 14px; }
@@ -281,16 +277,39 @@ button:hover {
   }
 }
 
-/* Бургер меню  */
+
+/* Стили для фото в about */
 .about-photo img {
-    width: 220px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0 10px 24px rgba(24,39,75,0.15);
-    border: 4px solid rgba(255,255,255,0.8);
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 10px 24px rgba(24,39,75,0.15);
+  border: 4px solid rgba(255,255,255,0.8);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Базовые стили для кнопки навигации */
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
 
   .about-photo img:hover {
     transform: translateY(-4px);
@@ -303,35 +322,9 @@ button:hover {
   outline: none;
 }
 
-  .nav-list {
-    display: none;
-  }
-
   .nav-list.active {
     display: flex;
   }
-/* Projects grid/ карточки работ */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 16px;
-  align-items: start;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* карточка */
-.proj-card {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .6s ease, transform .6s ease;
-}
 
 .proj-card.visible {
   opacity: 1;
@@ -347,14 +340,6 @@ button:hover {
   transition: transform .25s ease, filter .25s ease;
 }
 
-/* тело карточки */
-.proj-body {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 auto;
-}
 
 /* Hover эффект всей карточки */
 .proj-card.visible:hover {
@@ -403,8 +388,8 @@ button:hover {
 /* Появление при скролле: fade-in / slide-up */
 .fade-in {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(.22, .9, .32, 1), transform 0.7s cubic-bezier(.22, .9, .32, 1);
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.7s ease;
   will-change: opacity, transform;
 }
 
@@ -527,4 +512,104 @@ button:hover {
 .hero-text {
   flex: 1;
 }
+
+/*  Видимые состояния фокуса (a11y)  */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 3px solid rgba(31,111,235,0.22);
+  outline-offset: 3px;
+  box-shadow: 0 8px 24px rgba(31,111,235,0.08);
+}
+
+/* Немного уменьшим «блеск» для мыши — но сохраним для клавиатуры */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+.projects-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: start;
+  margin-top: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  grid-auto-rows: 1fr;
+}
+
+.proj-card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 6px 18px rgba(24,39,75,0.04);
+  transition: transform .18s ease, box-shadow .18s ease;
+  min-height: 0;
+}
+
+.proj-media {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.00));
+}
+
+.proj-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .28s ease, filter .28s ease;
+}
+
+.proj-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.proj-title { margin: 0; font-size: 16px; line-height: 1.2; }
+.proj-desc { margin: 0; color: var(--muted); font-size: 14px; }
+
+.proj-tags { display:flex; gap:8px; flex-wrap:wrap; }
+.proj-tags span { background: rgba(31,111,235,0.06); color: var(--accent-600); padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+
+.proj-links { margin-top: auto; display:flex; gap:10px; flex-wrap:wrap; }
+.proj-links a {
+  display:inline-block;
+  font-weight:600;
+  font-size:14px;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background .12s ease, transform .08s ease;
+}
+.proj-links a:hover { background: rgba(31,111,235,0.06); transform: translateY(-2px); }
+
+.proj-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(24,39,75,0.12);
+}
+.proj-card:hover .proj-media img {
+  transform: scale(1.04);
+  filter: contrast(1.03);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .projects-grid { gap: 16px; }
+}
+@media (max-width: 700px) {
+  .projects-grid { gap: 12px; grid-template-columns: 1fr; }
+  .proj-media { aspect-ratio: 3 / 2; }
+}
+
 /* ========== Конец файла ========== */

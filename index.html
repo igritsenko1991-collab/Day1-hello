@@ -10,7 +10,7 @@
 </head>
 <body>
   <header class="site-header" role="banner">
-    <div class="container">
+    <section class="container">
       <h1 class="logo">FRONTEND-DEVELOPER</h1>
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
@@ -25,18 +25,20 @@
           <li><a href="#contact">Контакты</a></li>
         </ul>
       </nav>
-    </div>
+    </section>
   </header>
+
   <!-- About/ Обо мне-->
 <main id="main">
+
    <section class="hero container fade-in" id="hero" aria-labelledby="hero-title">
-    <div class="hero-inner">
+      <div class="hero-inner">
       <div class="hero-text">
        <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
       </div>
-      <div class="hero-badge">10</div>
-     </div>
-   </section>
+      <div class="hero-badge">11</div>
+    </div>
+</section>
 <section class="about container fade-in" id="about" aria-labelledby="about-title">
       <h2 id="about-title">Обо мне</h2>
       <div class="about-content">
@@ -58,15 +60,16 @@
   <!-- Works с анимацией -->
     
     <section class="works container fade-in" id="works" aria-labelledby="works-title">
-    <h3 id="works-title">Мои проекты</h3>
+    <h2 id="works-title">Мои проекты</h2>
 
   <p class="works-intro">Ниже — отобранные мини-проекты и упражнения. Каждый проект содержит ссылку на demo и репозиторий.</p>
 
   <div class="projects-grid" role="list">
+
     <!-- Card 1 -->
     <article class="proj-card fade-in delay-1" role="listitem">
-      <a class="proj-media" href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">
-        <img src="images/works/project1.jpeg" alt="Превью проекта Лендинг — адаптивный" />
+      <a class="proj-media" href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">
+        <img src="images/works/project1.jpeg" alt="Превью проекта Лендинг — адаптивный" loading="lazy" width="1200" height="800" />
       </a>
       <div class="proj-body">
         <h4 class="proj-title">Лендинг — адаптив</h4>
@@ -76,40 +79,40 @@
           <span>CSS</span>
         </div>
         <div class="proj-links">
-          <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">Demo</a>
-          <a href="https://github.com/igritsenko1991-collab/Day1-hello" target="_blank" rel="noopener">Code</a>
+          <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">Demo</a>
+          <a href="https://github.com/igritsenko1991-collab/Day1-hello" target="_blank" rel="noopener noreferrer">Code</a>
         </div>
       </div>
     </article>
 
     <!-- Card 2 -->
     <article class="proj-card fade-in delay-2" role="listitem">
-      <a class="proj-media" href="#" target="_blank" rel="noopener">
-        <img src="images/works/project2.jpeg" alt="Превью проекта ToDo App" />
+      <a class="proj-media" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="images/works/project2.jpeg" alt="Превью проекта ToDo App" loading="lazy" width="1200" height="800"/>
       </a>
       <div class="proj-body">
         <h4 class="proj-title">ToDo App</h4>
         <p class="proj-desc">Мини-приложение для задач с localStorage (в планах — API).</p>
         <div class="proj-tags"><span>JS</span><span>localStorage</span></div>
         <div class="proj-links">
-          <a href="#" target="_blank" rel="noopener">Demo</a>
-          <a href="#" target="_blank" rel="noopener">Code</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Demo</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Code</a>
         </div>
       </div>
     </article>
 
     <!-- Card 3 -->
     <article class="proj-card fade-in delay-3" role="listitem">
-      <a class="proj-media" href="#" target="_blank" rel="noopener">
-        <img src="images/works/project3.jpeg" alt="Превью проекта Мини-блог" />
+      <a class="proj-media" href="#" target="_blank" rel="noopener noreferrer">
+        <img src="images/works/project3.jpeg" alt="Превью проекта Мини-блог" loading="lazy" width="1200" height="800"/>
       </a>
       <div class="proj-body">
         <h4 class="proj-title">Мини-блог</h4>
         <p class="proj-desc">Статический мини-блог: карточки постов, пагинация (в планах: backend).</p>
         <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
         <div class="proj-links">
-          <a href="#" target="_blank" rel="noopener">Demo</a>
-          <a href="#" target="_blank" rel="noopener">Code</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Demo</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Code</a>
         </div>
       </div>
     </article>
@@ -118,17 +121,17 @@
 
     <!-- Contact с анимацией -->
     <section class="contact container fade-in" id="contact" aria-labelledby="contact-title">
-      <h3 id="contact-title">Связаться со мной</h3>
+      <h2 id="contact-title">Связаться со мной</h2>
       <form id="contact-form" aria-describedby="contact-desc" novalidate>
   <p id="contact-desc" class="visually-hidden">Форма для связи — имя, email и сообщение.</p>
     <label for="name">Ваше имя</label>
-  <input id="name" name="name" type="text" placeholder="Ваше имя" required aria-required="true" aria-describedby="name-err" />
+  <input id="name" name="name" type="text" placeholder="Ваше имя" required aria-describedby="name-err" />
     <div id="name-err" class="field-error visually-hidden" aria-live="polite"></div>
     <label for="email">Email</label>
-  <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" aria-describedby="email-err" />
+  <input id="email" name="email" type="email" placeholder="you@example.com" required aria-describedby="email-err" />
     <div id="email-err" class="field-error visually-hidden" aria-live="polite"></div>
     <label for="message">Сообщение</label>
-  <textarea id="message" name="message" rows="4" placeholder="Написать сообщение" minlength="10" required aria-required="true" aria-describedby="message-err"></textarea>
+  <textarea id="message" name="message" rows="4" placeholder="Написать сообщение" minlength="10" required aria-describedby="message-err"></textarea>
     <div id="message-err" class="field-error visually-hidden" aria-live="polite"></div>
     <button id="contact-submit" type="submit">Отправить</button>
   <div id="form-status" role="status" aria-live="polite" class="visually-hidden"></div>
@@ -138,9 +141,9 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener">Репозиторий на GitHub</a></p>
+      <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">Репозиторий на GitHub</a></p>
     </div>
-       <button class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>
+       <button type="button" class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>
   </footer>
 
   <script src="main.js"></script>
