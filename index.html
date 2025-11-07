@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="styles.css?V=1" />
 </head>
 <body>
+  <div id="preloader" class="preloader">
+  <div class="preloader-inner">
+    <div class="spinner"></div>
+    <div class="preloader-text">Загружается…</div>
+  </div>
+</div>
   <header class="site-header" role="banner">
     <section class="container">
       <h1 class="logo">FRONTEND-DEVELOPER</h1>
@@ -30,13 +36,12 @@
 
   <!-- About/ Обо мне-->
 <main id="main">
-
    <section class="hero container fade-in" id="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
       <div class="hero-text">
        <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
       </div>
-      <div class="hero-badge">11</div>
+      <div class="hero-badge">12</div>
     </div>
 </section>
 <section class="about container fade-in" id="about" aria-labelledby="about-title">
@@ -143,9 +148,8 @@
     <div class="container">
       <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">Репозиторий на GitHub</a></p>
     </div>
-       <button type="button" class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>
   </footer>
-
+     <button type="button" class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>
   <script src="main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

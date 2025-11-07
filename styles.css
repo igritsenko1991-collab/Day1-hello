@@ -612,4 +612,59 @@ a:focus, button:focus, input:focus, textarea:focus {
   .proj-media { aspect-ratio: 3 / 2; }
 }
 
+
+/* ========== ПРЕЛОАДЕР ========== */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-inner {
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.preloader-text {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.page-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-ready {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
 /* ========== Конец файла ========== */

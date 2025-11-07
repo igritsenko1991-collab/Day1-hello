@@ -1,3 +1,29 @@
+/* Прелодер */
+(function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  const main = document.querySelector('main'); // можно изменить, если у тебя другой основной контейнер
+
+  if (!preloader || !main) return;
+
+  // Скрываем контент до загрузки
+  main.classList.add('page-hidden');
+
+  window.addEventListener('load', () => {
+    // Hide preloader плавно
+    preloader.classList.add('hidden');
+    setTimeout(() => {
+      main.classList.remove('page-hidden');
+      main.classList.add('page-ready');
+      preloader.remove();
+    }, 450); // соответствует CSS transition
+  });
+
+  // если страница уже загружена (например при горячей перезагрузке)
+  if (document.readyState === 'complete') {
+    window.dispatchEvent(new Event('load'));
+  }
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   // Бургер меню и навигация
   const navToggle = document.querySelector('.nav-toggle');
