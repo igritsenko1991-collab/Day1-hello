@@ -1,7 +1,7 @@
 /* Прелодер */
 (function initPreloader() {
   const preloader = document.getElementById('preloader');
-  const main = document.querySelector('main'); // можно изменить, если у тебя другой основной контейнер
+  const main = document.querySelector('main');
 
   if (!preloader || !main) return;
 
@@ -15,10 +15,9 @@
       main.classList.remove('page-hidden');
       main.classList.add('page-ready');
       preloader.remove();
-    }, 450); // соответствует CSS transition
+    }, 450);
   });
 
-  // если страница уже загружена (например при горячей перезагрузке)
   if (document.readyState === 'complete') {
     window.dispatchEvent(new Event('load'));
   }
@@ -41,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
       navToggle.setAttribute('aria-expanded', 'true');
       navList.classList.add('active');
       navList.setAttribute('aria-hidden', 'false');
-    };
+
+    const firstLink = navList.querySelector('a');
+  if (firstLink) {
+    setTimeout(() => firstLink.focus(), 100);
+  }
+ };
 
     const closeMenu = () => {
       navToggle.setAttribute('aria-expanded', 'false');

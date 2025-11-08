@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="styles.css?V=1" />
 </head>
 <body>
+<!-- Skip link для доступности -->
+ <a href="#main" class="skip-link">Перейти к основному содержимому</a>
   <div id="preloader" class="preloader">
   <div class="preloader-inner">
     <div class="spinner"></div>
@@ -21,8 +23,10 @@
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
       <nav class="nav" role="navigation" aria-label="Главное меню">
-        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav">
-          ☰ <span class="visually-hidden">Меню бургер</span>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть главное меню">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="visually-hidden">Меню</span>
         </button>
 
         <ul id="main-nav" class="nav-list">
@@ -41,7 +45,7 @@
       <div class="hero-text">
        <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
       </div>
-      <div class="hero-badge">12</div>
+      <div class="hero-badge">13</div>
     </div>
 </section>
 <section class="about container fade-in" id="about" aria-labelledby="about-title">
