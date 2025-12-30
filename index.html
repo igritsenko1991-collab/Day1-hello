@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Описание страницы -->
-  <meta name="description" content="Моя первая страница — тренировка HTML и Git. Лендинг с контактной формой." />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Моя первая страница — тренировка HTML и Git. Лендинг с контактной формой."/>
   <title>Hello — Моя первая страница</title>
-  <link rel="stylesheet" href="styles.css?V=1" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<!-- Skip link для доступности -->
  <a href="#main" class="skip-link">Перейти к основному содержимому</a>
   <div id="preloader" class="preloader">
   <div class="preloader-inner">
@@ -19,14 +17,15 @@
 </div>
   <header class="site-header" role="banner">
     <section class="container">
-      <h1 class="logo">FRONTEND-DEVELOPER</h1>
+      <h1 class="logo">My portfolio</h1>
 
       <!-- Семантический nav с кнопкой для мобильной навигации -->
       <nav class="nav" role="navigation" aria-label="Главное меню">
         <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть главное меню">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="visually-hidden">Меню</span>
+        <div class="line">+</div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="visually-hidden">Меню</div>
         </button>
 
         <ul id="main-nav" class="nav-list">
@@ -43,20 +42,18 @@
    <section class="hero container fade-in" id="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
       <div class="hero-text">
-       <h2 id="hero-title">ВСЕМ ПРИВЕТ<br/>И это день</h2>
+       <h2 id="hero-title">ВСЕМ ПРИВЕТ!</h2>
       </div>
-      <div class="hero-badge">13</div>
     </div>
 </section>
 <section class="about container fade-in" id="about" aria-labelledby="about-title">
-      <h2 id="about-title">Обо мне</h2>
       <div class="about-content">
         <div class="about-text">
-          <p>Меня зовут <strong>Игорь</strong>. Я учусь на <strong>фронтенд-разработчика</strong>, изучаю HTML, CSS и JavaScript и собираю проекты для своего портфолио на GitHub. Люблю продумывать интерфейсы и делать их доступными.</p>
-          <ul class="skills">
-            <li>HTML5 / Семантика</li>
-            <li>CSS3 / Flexbox / Grid</li>
-            <li>JavaScript / DOM</li>
+          <p>Меня зовут Игорь. И я учусь на фронтенд-разработчика, изучаю HTML, CSS и JavaScript и собираю проекты для своего портфолио на GitHub. Люблю продумывать интерфейсы и делать их доступными.</p>
+          <ul class="skills">Скилы:
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
           </ul>
         </div>
         <figure class="about-photo">
@@ -78,10 +75,10 @@
     <!-- Card 1 -->
     <article class="proj-card fade-in delay-1" role="listitem">
       <a class="proj-media" href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">
-        <img src="images/works/project1.jpeg" alt="Превью проекта Лендинг — адаптивный" loading="lazy" width="1200" height="800" />
+        <img src="images/works/project1.jpg" alt="Превью проекта Лендинг — адаптивный" loading="lazy" width="1200" height="800" />
       </a>
       <div class="proj-body">
-        <h4 class="proj-title">Лендинг — адаптив</h4>
+        <h4 class="proj-title">Лендинг</h4>
         <p class="proj-desc">Простой адаптивный лендинг с бургер-меню и контактной формой.</p>
         <div class="proj-tags">
           <span>HTML</span>
@@ -97,10 +94,10 @@
     <!-- Card 2 -->
     <article class="proj-card fade-in delay-2" role="listitem">
       <a class="proj-media" href="#" target="_blank" rel="noopener noreferrer">
-        <img src="images/works/project2.jpeg" alt="Превью проекта ToDo App" loading="lazy" width="1200" height="800"/>
+        <img src="images/works/project2.jpg" alt="Превью проекта ToDo App" loading="lazy" width="1200" height="800"/>
       </a>
       <div class="proj-body">
-        <h4 class="proj-title">ToDo App</h4>
+        <h4 class="proj-title">ToDo list</h4>
         <p class="proj-desc">Мини-приложение для задач с localStorage (в планах — API).</p>
         <div class="proj-tags"><span>JS</span><span>localStorage</span></div>
         <div class="proj-links">
@@ -113,11 +110,11 @@
     <!-- Card 3 -->
     <article class="proj-card fade-in delay-3" role="listitem">
       <a class="proj-media" href="#" target="_blank" rel="noopener noreferrer">
-        <img src="images/works/project3.jpeg" alt="Превью проекта Мини-блог" loading="lazy" width="1200" height="800"/>
+        <img src="images/works/project3.jpg" alt="Превью проекта Мини-блог" loading="lazy" width="1200" height="800"/>
       </a>
       <div class="proj-body">
-        <h4 class="proj-title">Мини-блог</h4>
-        <p class="proj-desc">Статический мини-блог: карточки постов, пагинация (в планах: backend).</p>
+        <h4 class="proj-title">Веб-сайт погоды</h4>
+        <p class="proj-desc">Веб-сайт прогноза погоды</p>
         <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
         <div class="proj-links">
           <a href="#" target="_blank" rel="noopener noreferrer">Demo</a>
@@ -150,7 +147,7 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">Репозиторий на GitHub</a></p>
+      <p>© <span id="year"></span> — <a href="https://igritsenko1991-collab.github.io/Day1-hello/" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </div>
   </footer>
      <button type="button" class="back-to-top" aria-label="Вернуться наверх" style="display: none;">↑</button>

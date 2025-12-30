@@ -1,12 +1,13 @@
 /* ========== CSS-переменные (цвета, шрифты) ========== */
 :root{
+  background: white;
   --bg: #f7f7f8;
   --surface: #ffffff;
-  --muted: #666770;
+  --muted: #ffffff;
   --text: #111217;
   --accent: #1f6feb; /* primary button / links */
   --accent-600: #165ecb;
-  --border: #e6e6e6;
+  --border: #ffffff;
   --shadow: 0 4px 14px rgba(24,39,75,0.06);
   --radius: 8px;
   --max-width: 900px;
@@ -50,7 +51,7 @@
 }
 
 .visually-hidden {
-  position: absolute !important;
+  display: block;
   height: 1px; width: 1px;
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
@@ -77,7 +78,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.45;
-  background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 70%);
+  background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -94,6 +95,7 @@ h1, h2, h3, h4, h5 {
   margin: 0 0 8px 0;
   font-weight: 600;
   line-height: 1.15;
+  text-align: center;
 }
 
 .nav-list {
@@ -106,7 +108,7 @@ h1, h2, h3, h4, h5 {
   gap: 10px;
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(250, 247, 247, 0.74);
   z-index: 50;
   min-width: 160px;
 }
@@ -115,9 +117,8 @@ h1, h2, h3, h4, h5 {
   display: flex;
 }
 
-
 h1 { font-size: 30px; }      /* логотип / маленький заголовок */
-h2 { font-size: 28px; }      /* hero */
+h2 { font-size: 24px; }      /* hero */
 h3 { font-size: 18px; }      /* секции */
 p { margin: 0 0 12px 0; font-size: 15px; color: #222; }
 
@@ -126,7 +127,7 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
 
 /* ========== Header / Навигация ========== */
 .site-header {
-  background: var(--surface);
+  background: rgb(255, 255, 255);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -141,53 +142,61 @@ ul { padding-left: 1.15rem; margin: 0 0 12px 0; }
   padding: 14px 20px;
 }
 
-/* Логотип (простейший вид) */
+/* Логотип */
 .logo {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 700;
-  color: var(--text);
+  color: #272727;
 transition: color .2s ease;
+padding: 1px;
+border: #919191 ;
 }
-
+/* Логотип ховер */
 .logo:hover {
- color: var(--accent);
+ color: #a5a5a5;
+ cursor: pointer;
+ border:#000000;
+ 
 }
-
 /* Навигация */
 .nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 30px;
   position: relative; /* для абсалютного позиционирования мобильного меню */ 
 }
 
 /* Список ссылок по умолчанию (десктоп) */
 .nav-list {
   list-style: none;
-  gap: 16px;
+  gap: 18px;
   align-items: center;
   margin: 0;
   padding: 0;
 }
 
-/* Ссылки */
+/* Ссылки  навигации меню*/
 .nav-list a {
-  text-decoration: none;
-  color: #333;
-  font-size: 15px;
+  text-decoration: underline;
+  text-decoration-color:#686868;
+  font-weight: bold;
+  color: #050505fa;
+  font-size: 17px;
   padding: 8px 6px;
   border-radius: 6px;
 }
 
 .nav-list a:hover,
 .nav-list a:focus {
-  background: rgba(31,111,235,0.06);
+  background: rgba(35, 97, 190, 0.06);
 }
 
 /* Кнопка для мобильной навигации (гамбургер) */
 .nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
   border-radius: 8px;
-  transition: background .12s ease, transform .08s ease;
 }
 
 /* ========== Hero / Секции ========== */
@@ -202,7 +211,7 @@ transition: color .2s ease;
 }
 
 .hero-text h2 {
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 8px;
 }
 
@@ -211,15 +220,6 @@ transition: color .2s ease;
   margin-bottom: 6px;
 }
 
-.hero-badge {
-  background: var(--accent);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 3px 6px rgba(31,111,235,0.3);
-}
 .works,
 .contact {
   margin-top: 24px;
@@ -230,17 +230,16 @@ transition: color .2s ease;
   border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* ========== Форма ========== */
+/* ========== Форма связаться со мной========== */
 
 form label {
   display: block;
   font-size: 14px;
   margin-bottom: 6px;
-  color: #333;
+  color: #000000;
 }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -251,40 +250,44 @@ textarea {
 
 /* Кнопки */
 button {
-  display: inline-block;
-  padding: 10px 14px;
-  font-size: 15px;
+  display: block;
+  padding: 8px 12px;
+  font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   background: var(--accent);
-  color: #fff;
+  color: black;
   transition: background .15s ease, transform .1s ease;
 }
 
+/* Анимация кнопки */
 button:hover {
-  background: var(--accent-600);
-  transform: translateY(-1px);
+  background: #a5a5a5;
+  transform: translateX(1px);
 }
 
-/* ========== Footer ========== */
+/* ========== Футер ========== */
 .site-footer {
   text-align: center;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 16px;
   padding: 20px 0 40px 0;
 }
 
-
-  /* дополнительные мобильные правила (если есть) */
+  /* Дополнительно для мобильной версии */
   .site-header .container { padding: 10px 14px; }
   h2 { font-size: 22px; }
   .hero { padding: 24px 0; }
 
-
+ 
+  .nav-toggle {
+    display: block; 
+  }
 /* Планшеты и выше - горизонтальное меню */
-@media (min-width:701px) {
-  .nav-toggle { display: none; }
+@media (min-width:768px) {
+  .nav-toggle { 
+    display: block; }
   .nav-list {
     display: flex;
     position: static;
@@ -292,19 +295,20 @@ button:hover {
     background: transparent;
     padding: 0;
     flex-direction: row;
-    gap: 16px;
+    gap: 14px;
     align-items: center;
   }
 }
-
-/* Десктоп (широкие экраны) — улучшение лэйаута */
+/* Десктоп */
 @media (min-width: 1024px) {
+  .nav-toggle {
+    display: none;
+  }
   body {
     max-width: 1200px;
     margin: 0 auto;
-
   }
- main {
+  main {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
@@ -315,23 +319,23 @@ button:hover {
 
 /* Стили для фото в about */
 .about-photo img {
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 10%;
   box-shadow: 0 10px 24px rgba(24,39,75,0.15);
-  border: 4px solid rgba(255,255,255,0.8);
-  transition: transform .25s ease, box-shadow .25s ease;
+  border: 4px solid rgba(65, 65, 65, 0.8);
+  transition: transform .3s ease-in-out, box-shadow .03s ease-in-out;
 }
 
-/* Базовые стили для кнопки навигации */
+/* Базовые стили для кнопки навигации (кнопка бургер) */
 .nav-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: none;
+  background-color: #929292;
   border: 1px solid var(--border);
   cursor: pointer;
 }
@@ -345,14 +349,15 @@ button:hover {
   white-space: nowrap; 
   width: 1px;
 }
-
+/* Работа с изображением */
   .about-photo img:hover {
-    transform: translateY(-4px);
-   box-shadow: 0 16px 32px rgba(24,39,75,0.2);
+   transform: scale(1.11);
+   transition: transform 0.7s ease;
+   box-shadow: 0 16px 32px rgba(53, 85, 160, 0.2);
   }
-  .nav-toggle:hover,
+.nav-toggle:hover,
 .nav-toggle:focus {
-  background: rgba(0,0,0,0.08);
+  background: rgba(207, 42, 42, 0.08);
   transform: translateY(-1px);
   outline: none;
 }
@@ -382,7 +387,7 @@ button:hover {
   box-shadow: 0 18px 40px rgba(24,39,75,0.12);
 }
 .proj-card:hover .proj-media img {
-  transform: scale(1.04);
+  transform: scale(1.00);
   filter: contrast(1.03);
 }
 
@@ -443,7 +448,7 @@ button:hover {
 
 .proj-tags { display:flex; gap:8px; flex-wrap:wrap; }
 .proj-tags span {
-  background: rgba(31,111,235,0.06);
+  background: rgba(229, 231, 235, 0.06);
   color: var(--accent-600);
   padding: 4px 8px; border-radius: 999px; font-size: 12px;
 }
@@ -454,7 +459,7 @@ button:hover {
   font-size: 14px;
   color: var(--accent);
   text-decoration: none;
-  padding: 6px 8px;
+  padding: 6px 10px;
   border-radius: 8px;
   transition: background .12s ease;
 }
@@ -463,15 +468,15 @@ button:hover {
 /* Кнопка "Наверх */
 .back-to-top {
   position: fixed;
-  bottom: 30px;
+  bottom: 20px;
   right: 30px;
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: #007bff;
-  color: white;
-  font-size: 20px;
+  background:#165ecb;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -484,9 +489,9 @@ button:hover {
   opacity: 1;
   visibility: visible;
 }
-
+/* Ховер кнопки "Наверх */
 .back-to-top:hover {
-  background: #33b300;
+  background: #686868;
   transform: translateY(-2px);
 }
 
@@ -513,23 +518,30 @@ button:hover {
 .about-content {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
   margin-top: 20px;
 }
 
 .about-text {
-  flex: 1;
+  flex-grow: 1; 
 }
 
 .skills {
   list-style: none;
-  padding: 0;
-  margin: 20px 0;
+  padding: 100px;
+  margin: 10px 10;
+  font-size: 16px;
+  border: 1px dashed rgb(112, 112, 112);
+  padding: 5px;
+  border-radius: 10px;
+
+  text-align: center;
+  font-style: italic;
 }
 
 .skills li {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 2px 0;
+  text-align: center;
 }
 
 .works-intro {
@@ -590,7 +602,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   overflow: hidden;
   aspect-ratio: 16 / 10;
   position: relative;
-  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.00));
+  background: #e6e6e6;
 }
 
 .proj-media img {
@@ -614,7 +626,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 .proj-desc { margin: 0; color: var(--muted); font-size: 14px; }
 
 .proj-tags { display:flex; gap:8px; flex-wrap:wrap; }
-.proj-tags span { background: rgba(31,111,235,0.06); color: var(--accent-600); padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.proj-tags span { background: rgba(234, 236, 238, 0.959); color: var(--accent-600); padding: 4px 8px; border-radius: 999px; font-size: 12px; }
 
 .proj-links { margin-top: auto; display:flex; gap:10px; flex-wrap:wrap; }
 .proj-links a {
@@ -634,7 +646,7 @@ a:focus, button:focus, input:focus, textarea:focus {
   box-shadow: 0 20px 50px rgba(24,39,75,0.12);
 }
 .proj-card:hover .proj-media img {
-  transform: scale(1.04);
+  transform: scale(1.1);
   filter: contrast(1.03);
 }
 
@@ -642,10 +654,10 @@ a:focus, button:focus, input:focus, textarea:focus {
 @media (max-width: 900px) {
   .projects-grid { gap: 16px; }
 }
-@media (max-width: 700px) {
-  .projects-grid { gap: 12px; grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  .projects-grid { gap: 12px; grid-template-columns: 1fr 1fr; }
+  }
   .proj-media { aspect-ratio: 3 / 2; }
-}
 
 
 /* ========== ПРЕЛОАДЕР ========== */
@@ -698,6 +710,7 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 .page-ready {
+  padding: 20px;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s ease;
