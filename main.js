@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstLink = navList.querySelector('a');
   if (firstLink) {
     setTimeout(() => firstLink.focus(), 100);
-  }
+   }
  };
 
     const closeMenu = () => {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('main.js: back-to-top button initialized');
     } else {
-    console.warn('main.js: Navigation elements not found — skipping menu init');
+    console.warn('back-to-top not found — skipping menu init');
   }
 
 
